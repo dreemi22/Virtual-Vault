@@ -100,7 +100,7 @@ class _MyloginState extends State<Mylogin> {
                             style: TextStyle(
                                 decoration: TextDecoration.underline,
                                 fontSize: 18,
-                                color: Color(0xff1F4CA4)),
+                                color: Color(0xff1F4CA4)) ,
                           ),
                         ),
                       ],
