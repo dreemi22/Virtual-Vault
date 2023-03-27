@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Mysignup extends StatefulWidget {
   const Mysignup({super.key});
@@ -14,7 +11,7 @@ class _MysignupState extends State<Mysignup> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('images/demo1.jpg'),
         ),
@@ -24,65 +21,65 @@ class _MysignupState extends State<Mysignup> {
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 130, left: 35),
-              child: Text(
+              padding: const EdgeInsets.only(top: 130, left: 35),
+              child: const Text(
                 'Create\nAccount',
                 style: TextStyle(color: Colors.black, fontSize: 50),
               ),
             ),
             SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   top: 370,
                   right: 30,
                   left: 30,
                 ),
                 child: Column(
                   children: [
-                    TextField(
+                    const TextField(
                       decoration: InputDecoration(
                         hintText: 'Username',
                         suffixIcon: Icon(
-                          FontAwesomeIcons.user,
+                          Icons.person_4,
                           size: 17,
                           color: Colors.black,
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 35,
                     ),
-                    TextField(
+                    const TextField(
                       decoration: InputDecoration(
                         hintText: 'Email',
                         suffixIcon: Icon(
-                          FontAwesomeIcons.envelope,
+                          Icons.email,
                           size: 17,
                           color: Colors.white,
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 35,
                     ),
-                    TextField(
+                    const TextField(
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'Password',
                         suffixIcon: Icon(
-                          FontAwesomeIcons.eyeSlash,
+                          Icons.visibility,
                           size: 17,
                           color: Colors.white,
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 85,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Sign In',
                           style: TextStyle(
                               color: Colors.black,
@@ -93,11 +90,11 @@ class _MysignupState extends State<Mysignup> {
                           radius: 30,
                           backgroundColor: Colors.white,
                           child: IconButton(
-                            color: Color(0xff1F4CA4),
+                            color: const Color(0xff1F4CA4),
                             onPressed: () {
                               Navigator.pushNamed(context, 'login');
                             },
-                            icon: Icon(Icons.arrow_forward),
+                            icon: const Icon(Icons.arrow_forward),
                           ),
                         )
                       ],
