@@ -5,11 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:web3dart/web3dart.dart';
 
-class TodoListModel {
+class ContractLinking {
   bool isLoading = true;
-  final String _rpcUrl = "HTTP://192.168.43.59:7545";
+  final String _rpcUrl = "HTTP://192.168.188.141:7545";
   final String _privateKey =
-      "c8853e9154746601bba62042511016feca202deaac416da7f05493950638c0b7";
+      "ad069960cdbbc06b58942b921e83d94f9e60982153f8a91a6157e423c449e75a";
   Credentials? _credentials;
   Web3Client? _client;
   String? _abiCode;
@@ -18,7 +18,7 @@ class TodoListModel {
   ContractFunction? regiserUser;
   ContractFunction? getUser;
 
-  TodoListModel() {
+  ContractLinking() {
     initiateSetup();
   }
 
@@ -43,9 +43,9 @@ class TodoListModel {
 
   Future<void> getDeployedContract() async {
     _contract = DeployedContract(
-        ContractAbi.fromJson(_abiCode!, "UserData"), _contractAddress!);
-    regiserUser = _contract!.function("registerUser");
-    getUser = _contract!.function("getUser");
+        ContractAbi.fromJson(_abiCode!, "User"), _contractAddress!);
+    regiserUser = _contract!.function("userCids");
+    getUser = _contract!.function("getUserCids");
   }
 
   getUserData(EthereumAddress address) async {
@@ -59,21 +59,12 @@ class TodoListModel {
     isLoading = false;
   }
 
-  registerUser(String name, UintType number) async {
-    isLoading = true;
-
+  registerUser(String cid) async {
+    print("register Function entered");
     await _client!.sendTransaction(
         _credentials!,
         Transaction.callContract(
-            contract: _contract!,
-            function: regiserUser!,
-            parameters: [number, name, []]));
+            contract: _contract!, function: regiserUser!, parameters: [cid]));
+    print("User Registered");
   }
 }
-
-// class User {
-//   final UintType number;
-//   final String? name;
-//   final List<String> cids;
-//   User({required this.number, this.name, required this.cids});
-// }

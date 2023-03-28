@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:virtualvault/config/contract_linking.dart';
 import 'package:virtualvault/config/ipfs_service.dart';
 //import 'package:http/http.dart' as http;
 
@@ -44,8 +45,10 @@ class _MyuploadState extends State<Myupload> {
       body: Center(
         child: ElevatedButton(
             onPressed: () {
-              IpfsService ipfsService = IpfsService();
-              ipfsService.uploadImage(path);
+              // IpfsService ipfsService = IpfsService();
+              // String cid = await ipfsService.uploadImage(path);
+              ContractLinking contractLinking = ContractLinking();
+              contractLinking.registerUser("cid");
             },
             child: const Text("Are you sure you want to upload?")),
       ),

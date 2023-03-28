@@ -8,7 +8,7 @@ enum WalletState { empty, loading, loaded, success, error, logout }
 class WalletProvider {
   final WalletService _walletService = WalletService();
   final Web3Client _web3client =
-      Web3Client("HTTP://192.168.43.59:7545", Client());
+      Web3Client("HTTP://192.168.188.141:7545", Client());
   // GasPriceService? _gasPriceService;
   // ContractService? _contractService;
 

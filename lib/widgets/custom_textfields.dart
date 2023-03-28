@@ -72,3 +72,39 @@ class WalletPinTextField extends StatelessWidget {
     );
   }
 }
+
+class PhoneField extends StatelessWidget {
+  final TextEditingController controller;
+  final String hintText;
+  final String labelText;
+  const PhoneField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    required this.labelText,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      style: const TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        label: Text(labelText),
+        labelStyle: TextStyle(color: Colors.white.withOpacity(.5)),
+        hintText: hintText,
+        prefixIcon: Icon(
+          Icons.phone,
+          color: Colors.white.withOpacity(.5),
+        ),
+        hintStyle: TextStyle(color: Colors.white.withOpacity(.5)),
+        enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.white, width: 1.0),
+            borderRadius: BorderRadius.circular(20)),
+        focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.white, width: 1.0),
+            borderRadius: BorderRadius.circular(20)),
+      ),
+    );
+  }
+}

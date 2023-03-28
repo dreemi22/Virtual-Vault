@@ -2,8 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:virtualvault/pages/authentication/authenticatewallet.dart';
 import 'package:virtualvault/pages/authentication/newwallet.dart';
 import 'package:virtualvault/widgets/custom_buttons.dart';
-class CreateWallet extends StatelessWidget {
+
+import '../../widgets/custom_textfields.dart';
+
+class CreateWallet extends StatefulWidget {
   const CreateWallet({super.key});
+
+  @override
+  State<CreateWallet> createState() => _CreateWalletState();
+}
+
+class _CreateWalletState extends State<CreateWallet> {
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +47,23 @@ class CreateWallet extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
+                  // PhoneField(
+                  //   controller: phoneController,
+                    
+                  //   hintText: "98765XXXXX",
+                  //   labelText: "Phone number",
+                  // ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // PrivateKeyField(
+                  //   controller: nameController,
+                  //   hintText: "username",
+                  //   labelText: "Username",
+                  // ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
                   DefaultButton(
                     text: "I have private key",
                     onPress: () => Navigator.push(

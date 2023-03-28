@@ -25,7 +25,7 @@ class _WalletProfileState extends State<WalletProfile> {
   getUserData() async {
     await walletProvider.initializeWallet();
     EtherAmount etherAmount =
-        await Web3Client("HTTP://192.168.43.59:7545", Client()).getBalance(
+        await Web3Client("HTTP://192.168.188.141:7545", Client()).getBalance(
             EthereumAddress.fromHex(walletProvider.ethereumAddress!.hex));
     accountBalance = etherAmount.getInEther.toDouble();
 
