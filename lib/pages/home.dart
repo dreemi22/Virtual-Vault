@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class Myhome extends StatefulWidget {
   const Myhome({super.key});
 
@@ -48,21 +49,6 @@ class NavigationDrawer extends StatelessWidget {
         children: [
           ListTile(
             leading: const Icon(
-              Icons.home_outlined,
-              size: 30,
-            ),
-            title: const Text(
-              'Home',
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            ),
-            onTap: () {
-              Navigator.pushNamed(context, 'home');
-            },
-          ),
-          ListTile(
-            leading: const Icon(
               Icons.file_upload,
               size: 30,
             ),
@@ -103,6 +89,21 @@ class NavigationDrawer extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pushNamed(context, 'login');
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.person,
+              size: 30,
+            ),
+            title: const Text(
+              'Profile',
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+            onTap: () {
+              Navigator.pushNamed(context, 'walletprofile');
             },
           ),
           ListTile(
