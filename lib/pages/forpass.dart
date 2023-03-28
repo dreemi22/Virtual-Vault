@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Myforpass extends StatefulWidget {
   const Myforpass({super.key});
@@ -14,7 +11,7 @@ class _MyforpassState extends State<Myforpass> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('images/demo.jpg'),
         ),
@@ -24,8 +21,8 @@ class _MyforpassState extends State<Myforpass> {
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 130, left: 35),
-              child: Text(
+              padding: const EdgeInsets.only(top: 130, left: 35),
+              child: const Text(
                 'Create New\nPassword',
                 style: TextStyle(
                   color: Colors.white,
@@ -35,41 +32,38 @@ class _MyforpassState extends State<Myforpass> {
             ),
             SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.only(top: 370, right: 30, left: 30),
+                padding: const EdgeInsets.only(top: 370, right: 30, left: 30),
                 child: Column(
                   children: [
-                    TextField(
+                    const TextField(
                       decoration: InputDecoration(
                           hintText: 'Email',
-                          suffixIcon: Icon(
-                            FontAwesomeIcons.envelope,
-                            size: 17,
-                          )),
+                          suffixIcon: Icon(Icons.email, size: 17)),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 35,
                     ),
-                    TextField(
+                    const TextField(
                       decoration: InputDecoration(
                           hintText: 'Phone No.',
                           suffixIcon: Icon(
-                            FontAwesomeIcons.phone,
+                            Icons.phone,
                             size: 17,
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 35,
                     ),
-                    TextField(
+                    const TextField(
                       obscureText: true,
                       decoration: InputDecoration(
                           hintText: 'New Password',
                           suffixIcon: Icon(
-                            FontAwesomeIcons.eyeSlash,
+                            Icons.visibility,
                             size: 17,
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 85,
                     ),
                     Row(
@@ -77,13 +71,13 @@ class _MyforpassState extends State<Myforpass> {
                       children: [
                         CircleAvatar(
                           radius: 30,
-                          backgroundColor: Color(0xff1F4CA4),
+                          backgroundColor: const Color(0xff1F4CA4),
                           child: IconButton(
                             color: Colors.white,
                             onPressed: () {
                               Navigator.pushNamed(context, 'login');
                             },
-                            icon: Icon(Icons.arrow_forward),
+                            icon: const Icon(Icons.arrow_forward),
                           ),
                         )
                       ],

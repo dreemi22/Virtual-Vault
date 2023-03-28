@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:virtualvault/config/walletprovider.dart';
 
 class Mylogin extends StatefulWidget {
   const Mylogin({super.key});
@@ -11,10 +9,12 @@ class Mylogin extends StatefulWidget {
 }
 
 class _MyloginState extends State<Mylogin> {
+  WalletProvider walletProvider = WalletProvider();
+  TextEditingController textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
         image: AssetImage('images/demo.jpg'),
       )),
@@ -23,39 +23,40 @@ class _MyloginState extends State<Mylogin> {
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 90, left: 65),
-              child: Text(
+              padding: const EdgeInsets.only(top: 90, left: 65),
+              child: const Text(
                 'Welcome to\nVirtual Vault',
                 style: TextStyle(color: Colors.white, fontSize: 50),
               ),
             ),
             SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.only(top: 370, left: 30, right: 30),
+                padding: const EdgeInsets.only(top: 370, left: 30, right: 30),
                 child: Column(
                   children: [
                     TextField(
-                      decoration: InputDecoration(
-                          hintText: 'Email',
+                      controller: textController,
+                      decoration: const InputDecoration(
+                          hintText: 'Private Key',
                           suffixIcon: Icon(
-                            FontAwesomeIcons.envelope,
+                            Icons.key_off_outlined,
                             size: 17,
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
-                    TextField(
+                    const TextField(
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'Password',
                         suffixIcon: Icon(
-                          FontAwesomeIcons.eyeSlash,
+                          Icons.visibility_outlined,
                           size: 17,
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 85,
                     ),
                     Row(
@@ -63,17 +64,18 @@ class _MyloginState extends State<Mylogin> {
                       children: [
                         CircleAvatar(
                             radius: 30,
-                            backgroundColor: Color(0xff1F4CA4),
+                            backgroundColor: const Color(0xff1F4CA4),
                             child: IconButton(
                               color: Colors.white,
                               onPressed: () {
-                                Navigator.pushNamed(context, 'home');
+                                // Navigator.pushNamed(context, 'home');
+                                walletProvider.initializeFromKey(textController.text);
                               },
-                              icon: Icon(Icons.arrow_forward),
+                              icon: const Icon(Icons.arrow_forward),
                             ))
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     Row(
@@ -83,7 +85,7 @@ class _MyloginState extends State<Mylogin> {
                           onPressed: () {
                             Navigator.pushNamed(context, 'signup');
                           },
-                          child: Text(
+                          child: const Text(
                             'Sign up',
                             style: TextStyle(
                                 decoration: TextDecoration.underline,
@@ -95,12 +97,12 @@ class _MyloginState extends State<Mylogin> {
                           onPressed: () {
                             Navigator.pushNamed(context, 'forpass');
                           },
-                          child: Text(
+                          child: const Text(
                             'Forgot Password',
                             style: TextStyle(
                                 decoration: TextDecoration.underline,
                                 fontSize: 18,
-                                color: Color(0xff1F4CA4)) ,
+                                color: Color(0xff1F4CA4)),
                           ),
                         ),
                       ],

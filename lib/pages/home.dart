@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:virtualvault/forpass.dart';
-
 class Myhome extends StatefulWidget {
   const Myhome({super.key});
 
@@ -20,7 +16,7 @@ class _MyhomeState extends State<Myhome> {
               fontSize: 20,
             ),
           ),
-          backgroundColor: Color(0xff1F4CA4),
+          backgroundColor: const Color(0xff1F4CA4),
         ),
         drawer: const NavigationDrawer(),
       );
@@ -70,7 +66,7 @@ class NavigationDrawer extends StatelessWidget {
               Icons.file_upload,
               size: 30,
             ),
-            title: Text(
+            title: const Text(
               'Uploads',
               style: TextStyle(
                 fontSize: 20,
