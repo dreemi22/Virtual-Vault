@@ -14,6 +14,7 @@ class Myupload extends StatefulWidget {
 }
 
 class _MyuploadState extends State<Myupload> {
+  ContractLinking contractLinking = ContractLinking();
   String path = "";
   uploadFiles() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
@@ -47,8 +48,8 @@ class _MyuploadState extends State<Myupload> {
             onPressed: () {
               // IpfsService ipfsService = IpfsService();
               // String cid = await ipfsService.uploadImage(path);
-              ContractLinking contractLinking = ContractLinking();
-              contractLinking.registerUser("cid");
+
+               contractLinking.registerUser("cid");
             },
             child: const Text("Are you sure you want to upload?")),
       ),

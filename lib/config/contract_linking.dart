@@ -7,67 +7,65 @@ import 'package:web3dart/web3dart.dart';
 
 class ContractLinking {
   bool isLoading = true;
-  final String _rpcUrl = "HTTP://192.168.188.141:7545";
   final String _privateKey =
-      "ad069960cdbbc06b58942b921e83d94f9e60982153f8a91a6157e423c449e75a";
-  Credentials? _credentials;
-  Web3Client? _client;
-  String? _abiCode;
-  EthereumAddress? _contractAddress;
-  DeployedContract? _contract;
+      "0dc265cf367353087fd576e4bb267ff43f66fa45389a7e8f61caf6a6ce0fabe3";
+  Credentials? credentials;
+  final Web3Client client = Web3Client("HTTP://192.168.188.141:7545", Client());
+  String? abiCode;
+  EthereumAddress? contractAddress;
+  DeployedContract? contract;
   ContractFunction? regUser;
   ContractFunction? getUser;
 
   ContractLinking() {
     initiateSetup();
   }
-
-  Future<void> initiateSetup() async {
-    _client = Web3Client(_rpcUrl, Client());
+  initiateSetup() async {
     await getAbi();
-    await getCredentials();
-    await getDeployedContract();
+    getCredentials();
+    getDeployedContract();
   }
 
   Future<void> getAbi() async {
     String abiStringFile = await rootBundle.loadString("src/abis/User.json");
-    var jsonAbi = jsonDecode(abiStringFile);
-    _abiCode = jsonEncode(jsonAbi['abi']);
-    _contractAddress =
+    final jsonAbi = jsonDecode(abiStringFile);
+    abiCode = jsonEncode(jsonAbi['abi']);
+    contractAddress =
         EthereumAddress.fromHex(jsonAbi['networks']["5777"]["address"]);
   }
 
-  Future<void> getCredentials() async {
-    _credentials = EthPrivateKey.fromHex(_privateKey);
+  void getCredentials() {
+    credentials = EthPrivateKey.fromHex(_privateKey);
   }
 
-  Future<void> getDeployedContract() async {
-    _contract = DeployedContract(
-        ContractAbi.fromJson(_abiCode!, "User"), _contractAddress!);
-    regUser = _contract!.function("userCids");
-    getUser = _contract!.function("getUserCids");
+  void getDeployedContract() {
+    print(abiCode);
+    contract = DeployedContract(
+        ContractAbi.fromJson(abiCode!, "User"), contractAddress!);
+    regUser = contract!.function("userCids");
+    getUser = contract!.function("getUserCids");
   }
 
-  // getUserData(EthereumAddress address) async {
-  //   List totalUserList = await _client!
-  //       .call(contract: _contract!, function: getUser!, params: [address]);
-  //   BigInt totalUsers = totalUserList[0];
-  //   if (kDebugMode) {
-  //     print("TotalUsers: $totalUsers");
-  //   }
+  getUserData(EthereumAddress address) async {
+    List totalUserList = await client!
+        .call(contract: contract!, function: getUser!, params: [address]);
+    var totalUsers = totalUserList[0];
+    if (kDebugMode) {
+      print("TotalUsers: $totalUsers");
+    }
 
-  //   isLoading = false;
-  // }
+    isLoading = false;
+  }
 
   registerUser(String cid) async {
-    print("register Function entered");
-    print(regUser);
-    print(_contract);
-    print(_contractAddress);
-    await _client?.sendTransaction(
-        _credentials!,
+    print("Contract Address :");
+    print(contractAddress);
+    await client.sendTransaction(
+        credentials!,
         Transaction.callContract(
-            contract: _contract!, function: regUser!, parameters: [cid]));
+            contract: contract!, function: regUser!, parameters: [cid]));
     print("User Registered");
+    print(cid);
+    getUserData(EthereumAddress.fromHex("0x951588824AdAa88DAd1eB69CA7F53B931D9214ed"));
   }
 }
