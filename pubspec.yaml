@@ -67,6 +67,7 @@ flutter:
   assets:
     - images/
     - src/abis/User.json
+    - images/successfully-done.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

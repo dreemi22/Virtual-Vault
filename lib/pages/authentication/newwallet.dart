@@ -24,47 +24,39 @@ class NewWalletState extends State<NewWallet> {
   }
 
   void getBalance() async {}
-  double ammount = 0;
-  Future<void> walletFun() async {
+  double amount = 0;
+  walletFun() async {
     EtherAmount etherAmount =
         await Web3Client("HTTP://192.168.43.59:7545", Client()).getBalance(
             EthereumAddress.fromHex(walletProvider.ethereumAddress!.hex));
 
     setState(() {
-      ammount = etherAmount.getInEther.toDouble();
+      amount = etherAmount.getInEther.toDouble();
+      print("Account bal: $amount");
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+        body: SizedBox(
       width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("images/img3.jpg"),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken),
-        ),
-      ),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LottieBuilder.network(
-                'https://assets6.lottiefiles.com/private_files/lf30_p9aibugk.json'),
-            const SizedBox(
-              height: 20,
-            ),
+            SizedBox(
+                width: 250,
+                child: LottieBuilder.asset('images/successfully-done.json')),
             const Text('Congratulations',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 30,
                     fontWeight: FontWeight.bold)),
             Text('Account created',
                 style: TextStyle(
-                  color: Colors.white.withOpacity(.5),
+                  color: Colors.black.withOpacity(.5),
                   fontSize: 20,
                 )),
             const SizedBox(
@@ -74,7 +66,7 @@ class NewWalletState extends State<NewWallet> {
               alignment: Alignment.centerLeft,
               child: Text('Public address',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(.5),
+                    color: Colors.black.withOpacity(.5),
                     fontSize: 20,
                   )),
             ),
@@ -83,7 +75,7 @@ class NewWalletState extends State<NewWallet> {
                 Expanded(
                   child: Text(walletProvider.ethereumAddress.toString(),
                       style: TextStyle(
-                        color: Colors.white.withOpacity(.7),
+                        color: Colors.black.withOpacity(.7),
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       )),
@@ -98,7 +90,7 @@ class NewWalletState extends State<NewWallet> {
                     },
                     icon: Icon(
                       Icons.content_copy_rounded,
-                      color: Colors.white.withOpacity(.6),
+                      color: Colors.black.withOpacity(.6),
                     ))
               ],
             ),
@@ -109,7 +101,7 @@ class NewWalletState extends State<NewWallet> {
               alignment: Alignment.centerLeft,
               child: Text('Wallet Balance',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(.5),
+                    color: Colors.black.withOpacity(.5),
                     fontSize: 20,
                   )),
             ),
@@ -119,19 +111,17 @@ class NewWalletState extends State<NewWallet> {
                 padding: const EdgeInsets.only(top: 6),
                 child: Row(
                   children: [
-                    Text("$ammount ETH",
+                    Text("$amount ETH",
                         style: TextStyle(
-                          color: Colors.white.withOpacity(.7),
+                          color: Colors.black.withOpacity(.7),
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         )),
                     IconButton(
-                        onPressed: () {
-                          walletFun();
-                        },
+                        onPressed: walletFun,
                         icon: const Icon(
                           Icons.refresh_outlined,
-                          color: Colors.white,
+                          color: Colors.black,
                         ))
                   ],
                 ),
@@ -140,7 +130,7 @@ class NewWalletState extends State<NewWallet> {
             const SizedBox(
               height: 40,
             ),
-            DefaultButtonWhite(text: "Get some fresh ETH", onPress: () {}),
+            DefaultButton(text: "Get some fresh ETH", onPress: () {}),
             const SizedBox(
               height: 10,
             ),
@@ -151,7 +141,7 @@ class NewWalletState extends State<NewWallet> {
                   "Skip for now!!",
                   style: TextStyle(
                       decoration: TextDecoration.underline,
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 20),
                 ))
           ],

@@ -13,7 +13,6 @@ class AuthenticateWallet extends StatefulWidget {
 }
 
 class _AuthenticateWalletState extends State<AuthenticateWallet> {
- 
   TextEditingController keyController = TextEditingController();
   handleLogin() async {
     bool isValid = await WalletProvider().initializeFromKey(keyController.text);
@@ -33,13 +32,7 @@ class _AuthenticateWalletState extends State<AuthenticateWallet> {
     return Scaffold(
         body: Container(
             height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("images/img3.jpg"),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken),
-              ),
-            ),
+            decoration: const BoxDecoration(),
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
@@ -52,24 +45,25 @@ class _AuthenticateWalletState extends State<AuthenticateWallet> {
                     ),
                     Text("Enter your wallet credentials.",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: MediaQuery.of(context).size.width / 7,
                             fontWeight: FontWeight.bold)),
                     Row(
                       children: [
                         Text("Don't have a wallet?",
                             style: TextStyle(
-                              color: Colors.white.withOpacity(.5),
+                              color: Colors.black.withOpacity(.5),
                               fontSize: 20,
                             )),
                         const SizedBox(
                           width: 10,
                         ),
                         GestureDetector(
-                          onTap: () => Navigator.pop(context),
+                          onTap: () =>
+                              Navigator.pushNamed(context, 'createwallet'),
                           child: Text("Create one",
                               style: TextStyle(
-                                color: Colors.white.withOpacity(.5),
+                                color: Colors.black.withOpacity(.5),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                                 decoration: TextDecoration.underline,
@@ -89,7 +83,7 @@ class _AuthenticateWalletState extends State<AuthenticateWallet> {
                     const SizedBox(
                       height: 20,
                     ),
-                    DefaultButtonWhite(text: "Verify", onPress: handleLogin),
+                    DefaultButton(text: "Verify", onPress: handleLogin),
                     const SizedBox(
                       height: 20,
                     )

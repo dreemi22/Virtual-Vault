@@ -15,21 +15,21 @@ class PrivateKeyField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: const TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
         label: Text(labelText),
-        labelStyle: TextStyle(color: Colors.white.withOpacity(.5)),
+        labelStyle: TextStyle(color: Colors.black.withOpacity(.5)),
         hintText: hintText,
         prefixIcon: Icon(
           Icons.wallet,
-          color: Colors.white.withOpacity(.5),
+          color: Colors.black.withOpacity(.5),
         ),
-        hintStyle: TextStyle(color: Colors.white.withOpacity(.5)),
+        hintStyle: TextStyle(color: Colors.black.withOpacity(.5)),
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white, width: 1.0),
+            borderSide: const BorderSide(color: Colors.black, width: 1.0),
             borderRadius: BorderRadius.circular(20)),
         focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white, width: 1.0),
+            borderSide: const BorderSide(color: Colors.black, width: 1.0),
             borderRadius: BorderRadius.circular(20)),
       ),
     );
@@ -52,21 +52,21 @@ class WalletPinTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       obscureText: true,
-      style: const TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
         label: Text(labelText),
-        labelStyle: TextStyle(color: Colors.white.withOpacity(.5)),
+        labelStyle: TextStyle(color: Colors.black.withOpacity(.5)),
         hintText: hintText,
         prefixIcon: Icon(
           Icons.password_outlined,
-          color: Colors.white.withOpacity(.5),
+          color: Colors.black.withOpacity(.5),
         ),
-        hintStyle: TextStyle(color: Colors.white.withOpacity(.5)),
+        hintStyle: TextStyle(color: Colors.black.withOpacity(.5)),
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white, width: 1.0),
+            borderSide: const BorderSide(color: Colors.black, width: 1.0),
             borderRadius: BorderRadius.circular(20)),
         focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white, width: 1.0),
+            borderSide: const BorderSide(color: Colors.black, width: 1.0),
             borderRadius: BorderRadius.circular(20)),
       ),
     );
@@ -88,21 +88,21 @@ class PhoneField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: const TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
         label: Text(labelText),
-        labelStyle: TextStyle(color: Colors.white.withOpacity(.5)),
+        labelStyle: TextStyle(color: Colors.black.withOpacity(.5)),
         hintText: hintText,
         prefixIcon: Icon(
           Icons.phone,
-          color: Colors.white.withOpacity(.5),
+          color: Colors.black.withOpacity(.5),
         ),
-        hintStyle: TextStyle(color: Colors.white.withOpacity(.5)),
+        hintStyle: TextStyle(color: Colors.black.withOpacity(.5)),
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white, width: 1.0),
+            borderSide: const BorderSide(color: Colors.black, width: 1.0),
             borderRadius: BorderRadius.circular(20)),
         focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white, width: 1.0),
+            borderSide: const BorderSide(color: Colors.black, width: 1.0),
             borderRadius: BorderRadius.circular(20)),
       ),
     );

@@ -63,19 +63,15 @@ class _WalletProfileState extends State<WalletProfile> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 8,
                 ),
-                const CircleAvatar(
-                  radius: 50,
-                  child: Icon(Icons.person),
-                ),
                 const SizedBox(
                   height: 10,
                 ),
                 const Text(
-                  "Tim David",
+                  "Wallet Address",
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 20),
+                      fontSize: 30),
                 ),
                 TextButton(
                   onPressed: () {

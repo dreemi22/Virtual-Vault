@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:virtualvault/constants.dart';
 
@@ -35,10 +34,10 @@ class DefaultButton extends StatelessWidget {
   }
 }
 
-class DefaultButtonWhite extends StatelessWidget {
+class DefaultButtonblack extends StatelessWidget {
   final String text;
   final VoidCallback onPress;
-  const DefaultButtonWhite({
+  const DefaultButtonblack({
     super.key,
     required this.text,
     required this.onPress,
@@ -47,12 +46,12 @@ class DefaultButtonWhite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:onPress,
+      onTap: onPress,
       child: Container(
         height: 80,
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
-          color: Colors.white,
+          color: Colors.black,
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: Center(
@@ -66,10 +65,10 @@ class DefaultButtonWhite extends StatelessWidget {
   }
 }
 
-class OutlinedButtonWhite extends StatelessWidget {
+class OutlinedButtonBlack extends StatelessWidget {
   final String text;
   final Function onPress;
-  const OutlinedButtonWhite({
+  const OutlinedButtonBlack({
     super.key,
     required this.text,
     required this.onPress,
@@ -87,12 +86,12 @@ class OutlinedButtonWhite extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             border: Border.all(
-              color: Colors.white,
+              color: Colors.black,
             )),
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(fontSize: 25, color: Colors.white),
+            style: const TextStyle(fontSize: 25, color: Colors.black),
           ),
         ),
       ),
