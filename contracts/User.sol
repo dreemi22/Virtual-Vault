@@ -7,7 +7,6 @@ contract User
     {
         string[]cids;
     }
-
     mapping(address => UserDetails) users;
 
     function userCids(string memory cid)public{

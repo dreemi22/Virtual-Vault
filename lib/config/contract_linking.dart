@@ -15,7 +15,7 @@ class ContractLinking {
   String? _abiCode;
   EthereumAddress? _contractAddress;
   DeployedContract? _contract;
-  ContractFunction? regiserUser;
+  ContractFunction? regUser;
   ContractFunction? getUser;
 
   ContractLinking() {
@@ -44,27 +44,30 @@ class ContractLinking {
   Future<void> getDeployedContract() async {
     _contract = DeployedContract(
         ContractAbi.fromJson(_abiCode!, "User"), _contractAddress!);
-    regiserUser = _contract!.function("userCids");
+    regUser = _contract!.function("userCids");
     getUser = _contract!.function("getUserCids");
   }
 
-  getUserData(EthereumAddress address) async {
-    List totalUserList = await _client!
-        .call(contract: _contract!, function: getUser!, params: [address]);
-    BigInt totalUsers = totalUserList[0];
-    if (kDebugMode) {
-      print("TotalUsers: $totalUsers");
-    }
+  // getUserData(EthereumAddress address) async {
+  //   List totalUserList = await _client!
+  //       .call(contract: _contract!, function: getUser!, params: [address]);
+  //   BigInt totalUsers = totalUserList[0];
+  //   if (kDebugMode) {
+  //     print("TotalUsers: $totalUsers");
+  //   }
 
-    isLoading = false;
-  }
+  //   isLoading = false;
+  // }
 
   registerUser(String cid) async {
     print("register Function entered");
-    await _client!.sendTransaction(
+    print(regUser);
+    print(_contract);
+    print(_contractAddress);
+    await _client?.sendTransaction(
         _credentials!,
         Transaction.callContract(
-            contract: _contract!, function: regiserUser!, parameters: [cid]));
+            contract: _contract!, function: regUser!, parameters: [cid]));
     print("User Registered");
   }
 }
