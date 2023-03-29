@@ -46,9 +46,7 @@ class IpfsService {
     try {
       final response = await http.get(Uri.parse(ipfsURL + cid));
       if (kDebugMode) {
-        print("........................................");
-        print(response.body);
-        print("........................................");
+        print("Image successfully fetched");
       }
 
       return response;
