@@ -60,6 +60,8 @@ class _MyhomeState extends State<Myhome> {
     getCidsFromUser();
   }
 
+  String ipfsURL = 'https://ipfs.io/ipfs/';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,20 +86,30 @@ class _MyhomeState extends State<Myhome> {
             ? const Center(
                 child: CircularProgressIndicator(),
               )
-            : SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child: ListView.builder(
-                    itemCount: cids.length,
-                    itemBuilder: ((context, index) => ListTile(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      DocViewer(imageCid: cids[index]))),
-                          title: Text(index.toString()),
-                          subtitle: Text(cids[index]),
-                        ))),
+            : GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 10.0,
+                shrinkWrap: true,
+                children: List.generate(
+                  cids.length,
+                  (index) {
+                    String imageUrl = ipfsURL + cids[index];
+                    setState(() {});
+                    print(cids[index]);
+                    return Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: GestureDetector(
+                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>DocViewer(imageCid: cids[index])),),
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Image.network(imageUrl),
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: Row(
@@ -114,7 +126,7 @@ class _MyhomeState extends State<Myhome> {
                     IpfsService ipfsService = IpfsService();
                     String cid = await ipfsService.uploadImage(path);
 
-                    contractLinking.registerUser(cid);
+                   await contractLinking.registerUser(cid);
                     getCidsFromUser();
                     setState(() {
                       path == "";

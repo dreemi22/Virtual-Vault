@@ -22,7 +22,7 @@ class IpfsService {
         body: bytes,
       );
 
-      final data = jsonDecode(response.body);
+      final data = await jsonDecode(response.body);
 
       final cid = data['value']['cid'];
 

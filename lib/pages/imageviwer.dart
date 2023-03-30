@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
 
 class DocViewer extends StatefulWidget {
   final String imageCid;
@@ -14,6 +15,6 @@ class _DocViewerState extends State<DocViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("Document Viewer")),
-        body: Image.network(ipfsURL + widget.imageCid));
+        body: PhotoView(imageProvider: NetworkImage(ipfsURL + widget.imageCid)));
   }
 }
