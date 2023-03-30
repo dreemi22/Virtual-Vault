@@ -22,7 +22,7 @@ class IpfsService {
         body: bytes,
       );
 
-      final data = jsonDecode(response.body);
+      final data = await jsonDecode(response.body);
 
       final cid = data['value']['cid'];
 
@@ -30,7 +30,9 @@ class IpfsService {
         print('CID OF IMAGE -> $cid');
         getImage(cid);
       }
-      print('CID: $cid');
+      if (kDebugMode) {
+        print('CID: $cid');
+      }
       return cid;
     } catch (e) {
       if (kDebugMode) {
@@ -43,9 +45,10 @@ class IpfsService {
   Future<http.Response> getImage(String cid) async {
     try {
       final response = await http.get(Uri.parse(ipfsURL + cid));
-      print("........................................");
-      print(response.body);
-      print("........................................");
+      if (kDebugMode) {
+        print("Image successfully fetched");
+      }
+
       return response;
     } catch (e) {
       debugPrint('Error at IPFS Service - getImage: $e');

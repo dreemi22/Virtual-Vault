@@ -1,30 +1,73 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
+import 'package:virtualvault/config/walletservice.dart';
 import 'package:web3dart/web3dart.dart';
 
+enum WalletState { empty, loading, loaded, success, error, logout }
+
 class WalletProvider {
-  final Web3Client _web3client = Web3Client("HTTP://192.168.112.141:7545", Client());
+  final WalletService _walletService = WalletService();
+  final Web3Client _web3client =
+      Web3Client("HTTP://192.168.188.141:7545", Client());
+  // GasPriceService? _gasPriceService;
+  // ContractService? _contractService;
+
+  WalletState state = WalletState.empty;
+  String errMessage = "";
+  double accountBalance = 0.0;
+  late Credentials _credentials;
   EthereumAddress? ethereumAddress;
-  EtherAmount? etherAmount;
-  Credentials? _credentials;
-  double accountBalance = 0;
+  late EtherAmount etherAmount;
+  // GasInfo? gasInfo;
+  Transaction? transactionInfo;
+  double totalAmount = 0;
+  String lastTxHash = "";
+  double maticPrice = 0;
+  Function? onNetworkConfirmationRun;
+  getBalance() async {
+    etherAmount = await _web3client
+        .getBalance(EthereumAddress.fromHex(ethereumAddress!.hex));
+    accountBalance = etherAmount.getInEther.toDouble();
+    if (kDebugMode) {
+      print("Account Balance: $accountBalance");
+    }
+  }
+
+  // getTransactionFee(Transaction transaction) async {
+  //   try {
+  //     transactionInfo = transaction;
+  //     gasInfo = null;
+  //     gasInfo = await _gasPriceService?.getGasInfo(transaction);
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
+
+  initializeWallet() async {
+    _credentials = await _walletService.initializeWalletAgain();
+    ethereumAddress = _credentials.address;
+    getBalance();
+  }
 
   initializeFromKey(String privateKey) {
     try {
-      _credentials = EthPrivateKey.fromHex(privateKey);
-      ethereumAddress = _credentials!.address;
+      _credentials = _walletService.initializeWallet(privateKey);
+      ethereumAddress = _credentials.address;
+      _walletService.setPrivateKey(privateKey);
       getBalance();
+
+      return true;
     } on FormatException catch (e) {
       debugPrint('Error: ${e.message}');
     } catch (e) {
       debugPrint('Error: $e');
     }
+    return false;
   }
 
-  getBalance() async {
-    etherAmount = await _web3client
-        .getBalance(EthereumAddress.fromHex(ethereumAddress!.hex));
-    accountBalance = etherAmount!.getInEther.toDouble();
-    print("Account Balance: $accountBalance");
+  createWallet() {
+    _credentials = _walletService.generateRandomAccount();
+    ethereumAddress = _credentials.address;
+    getBalance();
   }
 }

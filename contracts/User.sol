@@ -5,20 +5,15 @@ contract User
 {
     struct UserDetails
     {
-        uint256 phonenumber;
-        string username;
-        string[] cids;
+        string[]cids;
     }
-
     mapping(address => UserDetails) users;
 
-    function registerUser(string memory name, uint256 phonenumber, string[] memory cid)public{
-        users[msg.sender] = UserDetails(phonenumber, name, cid);
+    function userCids(string memory cid)public{
+        users[msg.sender].cids.push(cid);
     }
     
-    function getUser(address walletAddress) public view returns (uint256 number, string memory name, string[] memory cids){
-        number = users[walletAddress].phonenumber;
-        name = users[walletAddress].username;
+    function getUserCids(address walletAddress) public view returns (string[] memory cids){
         cids = users[walletAddress].cids;
     }
 }
